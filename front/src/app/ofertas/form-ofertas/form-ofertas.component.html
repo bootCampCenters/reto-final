@@ -1,0 +1,12 @@
+<form (ngSubmit)="onSubmit()" #ofertaForm="ngForm">
+    <legend>Oferta Form</legend>
+    <label for="title">Title</label>
+    <input type="text" required [(ngModel)]="oferta.title" name="title">
+    <label for="description">Description</label>
+    <input type="text" required [(ngModel)]="oferta.description" name="description">
+    <label for="discount">Discount</label>
+    <input type="text" required [(ngModel)]="oferta.discount" name="discount">
+    <label for="expireDate">Expire Date</label>
+    <input type="text" required [(ngModel)]="oferta.expireDate" name="expireDate">
+    <button>Add</button>
+  </form>

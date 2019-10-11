@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { of, Observable } from "rxjs";
 import { Oferta } from "./ofertas";
+import {catchError} from 'rxjs/operators';
+import {HttpErrorHandler, HandleError} from '../error.service';
 
 
 @Injectable({
@@ -9,7 +11,12 @@ import { Oferta } from "./ofertas";
 })
 export class OfertasService {
 
-    constructor(private httpClient: HttpClient) {
+    //entity_url = environment.REST_API_URL + 'owners';
+
+  private handlerError: HandleError;
+
+    constructor(private httpClient: HttpClient, private httpErrorHandler: HttpErrorHandler) {
+        this.handlerError = httpErrorHandler.createHandleError('OfertasService');
 
     }
 
@@ -22,5 +29,19 @@ export class OfertasService {
             expireDate: new Date()
         }]);
     }
+
+    addOferta(oferta: Oferta): Observable<Oferta> {
+        return this.httpClient.post<Oferta>('servidor', oferta)
+      .pipe(
+        catchError(this.handlerError('addOferta', oferta))
+      );
+    }
+
+    deleteOferta(oferta_id: string): Observable<{}> {
+        return this.httpClient.delete<Oferta>('servidor' + '/' + oferta_id)
+          .pipe(
+             catchError(this.handlerError('deleteOwner', [oferta_id]))
+          );
+      }
 
 }

@@ -1,0 +1,11 @@
+<h3>Ofertas:</h3>
+<ul id=listOfertas>
+  <li *ngFor="let oferta of ofertas; let i = index;">
+        {{oferta.title}} {{oferta.description}}
+        <span class="glyphicon glyphicon-remove" (click)="delete($event, oferta.id)"></span>
+  </li>
+  
+  <!--<a (click)="onSelect(owner)">
+    {{owner.firstName}} {{owner.lastName}}
+    </a>-->
+</ul>
