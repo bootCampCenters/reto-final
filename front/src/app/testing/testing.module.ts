@@ -8,9 +8,9 @@ import { RouterLinkStubDirective, RouterOutletStubComponent } from './router-stu
     CommonModule
   ],
   declarations: [
-  DummyComponent,
-  RouterLinkStubDirective,
-  RouterOutletStubComponent
+    DummyComponent,
+    RouterLinkStubDirective,
+    RouterOutletStubComponent
   ]
 })
 export class TestingModule { }
